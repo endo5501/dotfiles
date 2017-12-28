@@ -1,15 +1,3 @@
-#       ___           ___           ___           ___           ___           ___      
-#      /\  \         /\  \         /\  \         /\__\         /\  \         /\  \     
-#     /::\  \       /::\  \       /::\  \       /:/  /        /::\  \       /::\  \    
-#    /:/\:\  \     /:/\:\  \     /:/\ \  \     /:/__/        /:/\:\  \     /:/\:\  \   
-#   /::\~\:\__\   /::\~\:\  \   _\:\~\ \  \   /::\  \ ___   /::\~\:\  \   /:/  \:\  \  
-#  /:/\:\ \:|__| /:/\:\ \:\__\ /\ \:\ \ \__\ /:/\:\  /\__\ /:/\:\ \:\__\ /:/__/ \:\__\ 
-#  \:\~\:\/:/  / \/__\:\/:/  / \:\ \:\ \/__/ \/__\:\/:/  / \/_|::\/:/  / \:\  \  \/__/ 
-#   \:\ \::/  /       \::/  /   \:\ \:\__\        \::/  /     |:|::/  /   \:\  \       
-#    \:\/:/  /        /:/  /     \:\/:/  /        /:/  /      |:|\/__/     \:\  \      
-#     \::/__/        /:/  /       \::/  /        /:/  /       |:|  |        \:\__\     
-#      ~~            \/__/         \/__/         \/__/         \|__|         \/__/     
-#                                                                                      
 
 # If not running interactively, don't do anything
 #[ -z "$PS1" ] && return
@@ -98,9 +86,9 @@ ESC="$(echo -ne '\033')"
 # If set to a number greater than zero, the value is used as the number of trailing
 # directory components to retain when expanding the \w and \W prompt string
 # escapes (see PROMPTING below). Characters removed are replaced with an ellipsis.
-if is_at_least 4; then
-    export PROMPT_DIRTRIM=3
-fi
+#if is_at_least 4; then
+#    export PROMPT_DIRTRIM=3
+#fi
 
 # man bash
 export MYHISTFILE=~/.bash_myhistory
@@ -153,14 +141,15 @@ if [ "$PLATFORM" = "linux" ]; then
     PS1="$PS1\[\e[0;38m\]\w\[\e[1;35m\]> \[\e[0m\]"
 else
     ### git-prompt
-    __git_ps1() { :; }
-    if [ -f ~/.modules/git-prompt.sh ]; then
-        source ~/.modules/git-prompt.sh
-    fi
-    my__git_ps1() { is_git_repo && echo -e "${Red}$(__git_ps1)${NC}" || :; }
-    PROMPT_COMMAND="my__git_ps1;$PROMPT_COMMAND"
-    PS1="\[\e[34m\]\u\[\e[1;32m\]@\[\e[0;33m\]\h\[\e[35m\]:"
-    PS1="$PS1\[\e[m\]\w\[\e[1;31m\]> \[\e[0m\]"
+    # __git_ps1() { :; }
+    # if [ -f ~/.modules/git-prompt.sh ]; then
+    #     source ~/.modules/git-prompt.sh
+    # fi
+    # my__git_ps1() { is_git_repo && echo -e "${Red}$(__git_ps1)${NC}" || :; }
+    # PROMPT_COMMAND="my__git_ps1;$PROMPT_COMMAND"
+    # PS1="\[\e[34m\]\u\[\e[1;32m\]@\[\e[0;33m\]\h\[\e[35m\]:"
+    # PS1="$PS1\[\e[m\]\w\[\e[1;31m\]> \[\e[0m\]"
+    PS1="\[\e[0;36m\][\u@\h \W]\\$\[\e[0m\]"
 fi
 
 export FZF_DEFAULT_OPTS='--extended'
@@ -267,71 +256,71 @@ bashrc_shopt() {
     # is printed, and the command proceeds. This option is only used by interactive shells.
     shopt -s cdspell
 
-    if is_at_least 4.0.0; then
-        # If set, the pattern '**' used in a filename expansion context will match
-        # all files and zero or more directories and subdirectories. If the pattern
-        # is followed by a '/', only directories and subdirectories match.
-        shopt -s globstar
+    #if is_at_least 4.0.0; then
+    #    # If set, the pattern '**' used in a filename expansion context will match
+    #    # all files and zero or more directories and subdirectories. If the pattern
+    #    # is followed by a '/', only directories and subdirectories match.
+    #    shopt -s globstar
 
-        # If set, a command name that is the name of a directory is executed as
-        # if it were the argument to the cd command. This option is only used by
-        # interactive shells.
-        shopt -s autocd
+    #    # If set, a command name that is the name of a directory is executed as
+    #    # if it were the argument to the cd command. This option is only used by
+    #    # interactive shells.
+    #    shopt -s autocd
 
-        # If set, Bash attempts spelling correction on directory names during word
-        # completion if the directory name initially supplied does not exist.
-        shopt -s dirspell
-    fi
+    #    # If set, Bash attempts spelling correction on directory names during word
+    #    # completion if the directory name initially supplied does not exist.
+    #    shopt -s dirspell
+    #fi
 }
 
 bashrc_loading() {
     echo -e "${Blue}Starting ${SHELL}...${NC}"
 
     # Load ~/.modules modules
-    local f
-    for f in ~/.modules/*.sh
-    do
-        # source non-executable file
-        if [ ! -x "$f" ]; then
-            . "$f" 2>/dev/null && echo "loading $f" | e_indent 2
-        fi
-    done
-    echo
+    #local f
+    #for f in ~/.modules/*.sh
+    #do
+    #    # source non-executable file
+    #    if [ ! -x "$f" ]; then
+    #        . "$f" 2>/dev/null && echo "loading $f" | e_indent 2
+    #    fi
+    #done
+    #echo
 
-    local repo repos
+    #local repo repos
     # repos is a list of bash plugins you want to download and use
     # The repo's name must consist of "username/reponame"
-    repos=(
-    "b4b4r07/enhancd"
-    )
+    #repos=(
+    #"b4b4r07/enhancd"
+    #)
 
     # repo is available
-    if [ "${#repos[@]}" -ne 0 ]; then
-        e_arrow $(e_header "Setup plugins...")
-        mkdir -p "$HOME/.repos"
-    fi
+    #if [ "${#repos[@]}" -ne 0 ]; then
+    #    e_arrow $(e_header "Setup plugins...")
+    #    mkdir -p "$HOME/.repos"
+    #fi
 
-    for repo in "${repos[@]}"
-    do
-        # repo need to be the string that consists of username/reponame
-        if [[ ! $repo =~ ^[A-Za-z0-9_-]+/[A-Za-z0-9_-]+$ ]]; then
-            # skip
-            continue
-        fi
+    #for repo in "${repos[@]}"
+    #do
+    #    # repo need to be the string that consists of username/reponame
+    #    if [[ ! $repo =~ ^[A-Za-z0-9_-]+/[A-Za-z0-9_-]+$ ]]; then
+    #        # skip
+    #        continue
+    #    fi
 
-        # get repo from github.com if it doesn't exist
-        if [ ! -d "$HOME/.repos/$repo" ]; then
-            # download to ~/.repo
-            git clone "https://github.com/$repo" "$HOME/.repos/$repo"
-        fi
+    #    # get repo from github.com if it doesn't exist
+    #    if [ ! -d "$HOME/.repos/$repo" ]; then
+    #        # download to ~/.repo
+    #        git clone "https://github.com/$repo" "$HOME/.repos/$repo"
+    #    fi
 
-        # finding and sourcing script file in repo
-        . $(find "$HOME/.repos/$repo" -name "*${repo##*/}*" -depth 1 | grep -E "${repo##*/}($|\.sh$)")
-        # displaying the info
-        if [ $? -eq 0 ]; then
-            echo "checking... $HOME/.repos/$repo/${repo##*/}".sh | e_indent 2
-        fi
-    done
+    #    # finding and sourcing script file in repo
+    #    . $(find "$HOME/.repos/$repo" -name "*${repo##*/}*" -depth 1 | grep -E "${repo##*/}($|\.sh$)")
+    #    # displaying the info
+    #    if [ $? -eq 0 ]; then
+    #        echo "checking... $HOME/.repos/$repo/${repo##*/}".sh | e_indent 2
+    #    fi
+    #done
 
     #[ -f /etc/bash_completion ]     && . /etc/bash_completion
     #[ -f /etc/git-completion.bash ] && . /etc/git-completion.bash
@@ -340,7 +329,7 @@ bashrc_loading() {
 
 bashrc_startup() {
     # tmux_automatically_attach attachs tmux session automatically when your are in zsh
-    tmux_automatically_attach
+    #tmux_automatically_attach
 
     bashrc_loading || return 1
 
