@@ -333,12 +333,12 @@ bashrc_startup() {
 
     bashrc_loading || return 1
 
-    echo
-    echo -e "${BCyan}This is BASH ${BRed}${BASH_VERSION%.*}${BCyan} - DISPLAY on ${BRed}$DISPLAY${NC}"
-    echo "$(date '+%Y-%m-%d %H:%M:%S') $HOSTNAME:$$ $PWD (start)" >> $MYHISTFILE
+    #echo
+    #echo -e "${BCyan}This is BASH ${BRed}${BASH_VERSION%.*}${BCyan} - DISPLAY on ${BRed}$DISPLAY${NC}"
+    #echo "$(date '+%Y-%m-%d %H:%M:%S') $HOSTNAME:$$ $PWD (start)" >> $MYHISTFILE
 
     #cowsay -f ghostbusters "$(fortune -s)"
-    echo
+    #echo
 }
 
 if bashrc_startup; then
