@@ -26,6 +26,8 @@
 #    return 1
 #fi
 
+setxkbmap -model pc101 -layout us
+
 export PATH=~/bin:"$PATH"
 export PAGER=less
 export LESS='-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
@@ -153,6 +155,9 @@ else
 fi
 
 export FZF_DEFAULT_OPTS='--extended'
+
+
+
 
 bash_alias() {
     # For mac, aliases
