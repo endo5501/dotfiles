@@ -3,3 +3,5 @@
 	name = endo5501
 [push]
 	default = simple
+[core]
+	pager = less -R
