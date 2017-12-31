@@ -5,3 +5,11 @@
 	default = simple
 [core]
 	pager = less -R
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[merge]
+	tool = vimdiff
+[mergetool]
+	prompt = false
