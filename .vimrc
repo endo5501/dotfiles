@@ -56,6 +56,10 @@ set autoread
 set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
+" 改行時に前の行のインデントを継続する
+set autoindent
+" カーソルを行頭、行末で止まらないようにする
+set whichwrap=b,s,h,l,<,>,[,]
 
 " 見た目系
 " 行番号を表示
@@ -80,6 +84,9 @@ set wildmode=list:longest
 nnoremap j gj
 nnoremap k gk
 
+
+
+
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
 set list listchars=tab:\▸\-
@@ -89,7 +96,8 @@ set expandtab
 set tabstop=2
 " 行頭でのTab文字の表示幅
 set shiftwidth=2
-
+" タブ入力を複数の空白入力に置き換える
+set expandtab
 
 " 検索系
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
